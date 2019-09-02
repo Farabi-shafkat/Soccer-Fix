@@ -1,0 +1,127 @@
+
+
+insert into league values(league_id_seq.nextval,'laliga',0,'18-19',null,TO_DATE('04-04-2018','dd-mm-yyyy'),TO_DATE('04-07-2019','dd-mm-yyyy'));
+
+insert into league values(league_id_seq.nextval,'EPL',0,'18-19',null,TO_DATE('04-10-2018','dd-mm-yyyy'),TO_DATE('04-06-2019','dd-mm-yyyy'));
+
+insert into league values(league_id_seq.nextval,'bundesliga',0,'18-19',null,TO_DATE('15-01-2018','dd-mm-yyyy'),TO_DATE('01-09-2019','dd-mm-yyyy'));
+
+insert into league values(league_id_seq.nextval,'MLS',0,'18-19',null,TO_DATE('04-04-2018','dd-mm-yyyy'),TO_DATE('18-03-2019','dd-mm-yyyy'));
+
+insert into league values(league_id_seq.nextval,'champions league',0,'18-19',null,TO_DATE('04-04-2018','dd-mm-yyyy'),TO_DATE('05-05-2019','dd-mm-yyyy'));
+
+
+
+
+
+
+.................
+
+tm lg
+insert into league_team values(23,2);
+insert into league_team values(24,2); 
+insert into league_team values(25,2); 
+insert into league_team values(26,2); 
+insert into league_team values(27,3); 
+insert into league_team values(26,2); 
+insert into league_team values(0,2);
+insert into league_team values(1,2); 
+insert into league_team values(2,2); 
+insert into league_team values(3,2); 
+insert into league_team values(27,3); 
+insert into league_team values(26,2); 
+-----------------------
+insert into teams values(team_id_seq.nextval,'barcelona1','BAR','spain','camp nue',5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,1);
+
+insert into teams values(team_id_seq.nextval,'real madrid1','RMA','spain',null,5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,1);
+
+insert into teams values(team_id_seq.nextval,'athletico madrid','AM','spain',null,5,TO_DATE('04-04-1970','dd-mm-yyyy'),0,1,1);
+
+insert into teams values(400,'manchester city2','MC','england',null,5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,2);
+
+insert into teams values(300,'manchester united2','MU','england',null,5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,2);
+
+insert into teams values(team_id_seq.nextval,'arsenal','ARS','england',null,5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,2);
+
+insert into teams values(team_id_seq.nextval,'westham','WES','england',null,5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,2);
+
+insert into teams values(team_id_seq.nextval,'bayern munich','BAR','germany',null,5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,3);
+
+insert into teams values(team_id_seq.nextval,'berlin fc','BER','germany',null,5,TO_DATE('04-04-1960','dd-mm-yyyy'),0,1,2);
+
+------------------------
+begin
+
+insert_player('lionel messi',TO_DATE('04-04-1960','dd-mm-yyyy'),'cf','barcelona');
+
+insert_player('raketich',TO_DATE('04-04-1960','dd-mm-yyyy'),'cm','barcelona');
+
+insert_player('iniesta',TO_DATE('04-04-1960','dd-mm-yyyy'),'cm','barcelona');
+
+insert_player('ronaldo',TO_DATE('04-04-1960','dd-mm-yyyy'),'cr','real madrid');
+
+insert_player('bale',TO_DATE('04-04-1960','dd-mm-yyyy'),'cl','real madrid');
+
+insert_player('lewandosky',TO_DATE('04-04-1960','dd-mm-yyyy'),'cf','bayern munich');
+
+insert_player('muller',TO_DATE('04-04-1960','dd-mm-yyyy'),'cr','bayern munich');
+
+insert_player('pogba',TO_DATE('04-04-1960','dd-mm-yyyy'),'cr','manchester united');
+
+insert_player('lukaku',TO_DATE('04-04-1960','dd-mm-yyyy'),'cf','manchester united');
+end;
+/
+-----------------------------
+begin
+
+-- exec create_match('Spanish la liga','manchester united','manchester city',2,3,null,'national');
+
+
+--create_match('champions league','barcelona','manchester city',2,3,null,'international');
+
+
+--exec create_match('Spanish la liga','barcelona','real madrid',2,3,null,'national');
+
+
+--create_match('laliga','athletico madrid','real madrid',2,3,null,'national');
+
+
+create_match('EPL','westham','manchester city',2,3,null,'national');
+
+
+create_match('bundesliga','bayern munich','berlin fc',2,3,null,'national');
+end;
+/
+-------------------------------------------------
+
+
+
+select team_id 
+  from teams
+     where team_name='manchester united';
+
+
+
+    set serveroutput on 
+
+
+
+      update points
+        set win=win+1,
+         point=point+3
+        where team=24 and lg_id=2;
+
+
+
+
+
+
+
+
+
+
+
+        (select name as homename  
+        from team,match
+        where team.id=match.homeid)
+      
